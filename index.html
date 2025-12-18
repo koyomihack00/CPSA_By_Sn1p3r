@@ -202,6 +202,57 @@ code{font-family: var(--mono); font-size: 13px; color: var(--text); background: 
 .barLabel{display:flex; justify-content:space-between; color: var(--muted); font-size: 12px}
 .footer{padding: 16px 18px; color: var(--muted); text-align:center}
 
+
+/* --- Responsive hardening (cross-platform) --- */
+html, body { height: 100%; }
+img, video, canvas { max-width: 100%; height: auto; }
+
+.main { padding: 10px; }
+.panel { width: min(980px, calc(100% - 24px)); margin: 14px auto; }
+.header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); }
+
+/* Allow header to wrap gracefully */
+.header .brand { min-width: 180px; }
+.header .header-actions { flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.header .pill { white-space: nowrap; }
+
+/* Make option cards and buttons touch-friendly */
+.opt { min-height: 48px; }
+.btn { min-height: 44px; }
+
+/* Ensure long words/URLs don't break layout */
+.qtext, .opt div, .reviewItem, .badge { overflow-wrap: anywhere; word-break: break-word; }
+
+/* Grid collapses on smaller screens */
+@media (max-width: 900px){
+  .grid { grid-template-columns: 1fr; }
+  .header { padding: 10px 12px; }
+  .header .titles .title { font-size: 18px; }
+  .header .titles .subtitle { font-size: 12px; }
+}
+
+/* Mobile-first navigation + spacing */
+@media (max-width: 640px){
+  .logo { width: 44px; height: 44px; font-size: 16px; }
+  .panel { padding: 14px; border-radius: 16px; }
+  .row { flex-wrap: wrap; }
+  .navRow { flex-wrap: wrap; gap: 10px; }
+  .navRow .btn { flex: 1 1 110px; }
+  .quizTop { gap: 10px; }
+  .crumbs { font-size: 12px; }
+  .badge { font-size: 12px; padding: 6px 10px; }
+  .qtext { font-size: 16px; }
+  .options { gap: 10px; }
+}
+
+/* Very small screens */
+@media (max-width: 380px){
+  .header .titles { display: none; } /* keep it compact */
+  .pill { font-size: 12px; padding: 6px 10px; }
+}
+
+
+
   </style>
 </head>
 <body>
